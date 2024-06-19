@@ -6,10 +6,14 @@ import PagingComp from '../pagingComp'
 import { Button} from 'react-native-paper'
 import { DProductDetail } from '../data/ProductDetail'
 import { RootStackScreenProps } from '../../navigators/RootNavigator'
+import { useSelector } from 'react-redux'
 import { datarecent } from '../data/datarecent'
 
 export const ProductDetail = ({navigation,route:{params:{id}}}:RootStackScreenProps<'Details'>) => {
-   // console.log('id',{id})
+   console.log('id',{id})
+   
+   
+   const datarecent = useSelector((state) => state.products.selectedProduct)
     const [index, setIndex] = useState(0);
     const scrollX = useRef(new Animated.Value(0)).current;
     
@@ -37,7 +41,7 @@ export const ProductDetail = ({navigation,route:{params:{id}}}:RootStackScreenPr
     }).current
 
     const product = datarecent
-    console.log('here is data',datarecent)
+    console.log(product.id)
     const [count, setCount] = useState(1)
     const { width} = useWindowDimensions()
    
@@ -54,11 +58,11 @@ export const ProductDetail = ({navigation,route:{params:{id}}}:RootStackScreenPr
         </SafeAreaView>
         <ScrollView className='mt-4'>
                 <Text className='fond-bold text-[20px] pl-3'>
-                    FRIDGE
+                    {product.name}
                 </Text>
 
                 <FlatList
-                    data={product}
+                    data={product.images}
                     horizontal 
                     pagingEnabled
                     snapToAlignment='center'
@@ -66,16 +70,17 @@ export const ProductDetail = ({navigation,route:{params:{id}}}:RootStackScreenPr
                     onScroll={handleOnScroll}
                     onViewableItemsChanged={handleOnViewableChanged}
                     viewabilityConfig={viewabilityConfig}
-                    renderItem={({ item, index }) => (
+                    renderItem={({ item, index}) => (
                         <View className='m-2 px-2 border rounded-lg border-slate-300 bg-blue-50'>
-                            <Image source={id}
+                            <Image source={item}
                                 style={{resizeMode:'contain'}}
                                 className='w-[330px] h-[200px] rounded-t-lg' 
                                 />
-                            <Text className='text-bold bg-emerald-200 p-1 px-3 text-[12px]'>{item.category}</Text>
+                            <Text className='text-bold bg-emerald-200 p-1 px-3 text-[12px]'>{product.category}</Text>
                             <View className='flex-row justify-between mt-3'>
                                 <View>
-                                    <Text className='text-[14] font-semibold'>{item.name}</Text>
+                                    <Text className='text-[14] font-semibold'>{product.price}</Text>
+                                    <Text className='text-[14] font-semibold'>{product.size}</Text>
                                 </View>
                                 <TouchableOpacity>
                                     <Icons name='cards-heart-outline' size={25} color={"#6495ed"} />
@@ -86,7 +91,7 @@ export const ProductDetail = ({navigation,route:{params:{id}}}:RootStackScreenPr
                     <View className='h-16'>
                        <PagingComp
                         //@ts-ignore
-                        data={DProductDetail.images} scrollX={scrollX} index={index}/> 
+                        data={product.images} scrollX={scrollX} index={index}/> 
                     </View>
                     
                     <View className='mt-4 gap-3'>
@@ -94,7 +99,7 @@ export const ProductDetail = ({navigation,route:{params:{id}}}:RootStackScreenPr
                             <Text className='fond-bold text-[20px] pl-3 text-fuchsia-50'>Description</Text>
                         </View>
                         <View className='gap-1 bg-gray-500 h-[140px] justify-center'>
-                           <Text className=' text-blue-700 font-semibold'>MAKE : SAMSUNG</Text>
+                           <Text className=' text-blue-700 font-semibold'>MAKE </Text>
                            <Text className=' text-red-700 font-semibold' >MODEL : 2024</Text>
                            <Text className='text-red-700 font-semibold'>SIZE : LARGE</Text>
                            <Text className=' font-sans font-bold fill-orange-950'>PRICE : R 4500 </Text>

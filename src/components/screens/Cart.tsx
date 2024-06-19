@@ -38,24 +38,7 @@ export const Cart = () => {
                       
                     </View>
                     
-                    {/* <View className='flex-row items-center gap-2 mr-3'>
-                        <View><Text className='text-lg text-cyan-600'>PRICE: $45609</Text></View>
-                        <View className='flex-1'></View>
-                      <View className='flex-row bg-cyan-500 mt-4 items-center p-1 rounded-[50px]'>
-                       <TouchableOpacity className='bg-white w-[44px] h-10  rounded-3xl items-center justify-center'
-                       onPress={() => setCount((count) => Math.max(1,count - 1))}
-                       >
-                         <Icon name='remove' size={25}/>
-                       </TouchableOpacity>
-                       <Text className='font-bold text-lg color-white m-1'>{count}</Text>
-                       <TouchableOpacity className='bg-white w-[44px] h-10  rounded-3xl items-center justify-center'
-                       onPress={() => setCount((count) => count + 1)}>
-                         <Icon name='add' size={25}/>
-                       </TouchableOpacity>
-                      </View>
-
-                     
-                    </View>  */}
+      
                     <View className='mt-4 gap-3'>
                         <View className=' bg-emerald-700 h-[40px] justify-center mb-4'>
                             <Text className='fond-bold text-[20px] pl-3 text-fuchsia-50'>Description</Text>

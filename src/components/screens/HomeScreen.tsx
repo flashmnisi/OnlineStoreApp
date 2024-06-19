@@ -4,8 +4,10 @@ import Entypo from 'react-native-vector-icons/Entypo'
 import Icons from 'react-native-vector-icons/MaterialCommunityIcons'
 import Icon from 'react-native-vector-icons/FontAwesome'
 import { SliderBox } from 'react-native-image-slider-box'
-import { datarecent } from '../data/datarecent'
+//import { datarecent } from '../data/datarecent'
 import { TabsStackScreenProps } from '../../navigators/TabsNavigator'
+import { useDispatch, useSelector } from 'react-redux'
+import { productsSlice } from '../redux/store/productSlice'
 
  const CATEGORIES = [
   'ALL ITEMS',
@@ -37,6 +39,9 @@ const Corousel = () => {
 
 export const HomeScreen = ({navigation}:TabsStackScreenProps<'Home'>) => {
 
+  const dispatch = useDispatch();
+
+  const datarecent = useSelector(state => state.products.products);
   const [categoryIndex, setCategoryIndex] = useState(0)
     return (
     
@@ -122,7 +127,11 @@ export const HomeScreen = ({navigation}:TabsStackScreenProps<'Home'>) => {
                 renderItem={({ item, index }) => (
 
                 <TouchableOpacity className='flex-1' 
-                      onPress={()=> {navigation.navigate('Details', {id: item.id})}}>
+                      onPress={()=> 
+                    
+                      {
+                        dispatch(productsSlice.actions.setSelectedProduct(item.id))
+                        navigation.navigate('Details', {id: item.id})}}>
                      <View className='m-2 p-2 border rounded-lg border-slate-300 bg-blue-50'>
                        <Image source={item.image} 
                       style={{resizeMode:'contain'}}
