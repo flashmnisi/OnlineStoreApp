@@ -51,7 +51,7 @@ export const datarecent = [
           image: require('../images/bed2.jpeg'),
           size: 'Queen"',
           description:'The best you can get with low price' ,
-          ingredients: [
+          images: [
             require('../images/bed2.jpeg'),
             require('../images/bed1.webp'),
           ],
@@ -66,7 +66,7 @@ export const datarecent = [
           image: require('../images/blanket.jpeg'),
           size: 'Large"',
           description:'The best you can get with low price' ,
-          ingredients: [
+          images: [
             require('../images/blanket.jpeg'),
             require('../images/blanket1.jpeg'),
           ],

@@ -15,13 +15,11 @@ export default function App () {
 
     return (
       <Provider store = {store}>
-         <View className='flex-1' >
+         
         <NavigationContainer>
           <RootNavigator/>
           <StatusBar barStyle={'dark-content'}/>
         </NavigationContainer>
-        
-      </View>
       </Provider>
       
     )

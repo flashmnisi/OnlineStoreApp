@@ -1,15 +1,13 @@
 
 import React, {useState } from 'react'
 import { FlatList, Text, TouchableOpacity, View ,Image, ScrollView,SafeAreaView, Animated, useWindowDimensions} from 'react-native'
-import Icons from 'react-native-vector-icons/MaterialCommunityIcons'
-import Icon from 'react-native-vector-icons/Ionicons'
 import { Button} from 'react-native-paper'
-import { DProductDetail } from '../data/ProductDetail'
 import Cartdata from '../data/Cartdata'
 import CartList from '../CartList'
+import { useSelector } from 'react-redux'
 
 export const Cart = () => {
-
+    const cartItems = useSelector((state) => state.cart.items);
     const [count, setCount] = useState(1)
     const { width} = useWindowDimensions()
    
@@ -27,7 +25,7 @@ export const Cart = () => {
         <ScrollView className='mt-4'>
 
                 <FlatList
-                    data={Cartdata}
+                    data={cartItems}
                     pagingEnabled
                     snapToAlignment='center'
                     showsHorizontalScrollIndicator={false}

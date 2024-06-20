@@ -4,15 +4,17 @@ import { FlatList, Text, TouchableOpacity, View ,Image, ScrollView,SafeAreaView,
 import Icons from 'react-native-vector-icons/MaterialCommunityIcons'
 import PagingComp from '../pagingComp'
 import { Button} from 'react-native-paper'
-import { DProductDetail } from '../data/ProductDetail'
 import { RootStackScreenProps } from '../../navigators/RootNavigator'
-import { useSelector } from 'react-redux'
-import { datarecent } from '../data/datarecent'
+import { useDispatch, useSelector } from 'react-redux'
+import { cartSlice } from '../redux/store/cartSlice'
 
 export const ProductDetail = ({navigation,route:{params:{id}}}:RootStackScreenProps<'Details'>) => {
    console.log('id',{id})
+   const dispatch = useDispatch();
    
-   
+   const addToCart = () => {
+    dispatch(cartSlice.actions.addCartItem({product}))
+   }
    const datarecent = useSelector((state) => state.products.selectedProduct)
     const [index, setIndex] = useState(0);
     const scrollX = useRef(new Animated.Value(0)).current;
@@ -76,7 +78,7 @@ export const ProductDetail = ({navigation,route:{params:{id}}}:RootStackScreenPr
                                 style={{resizeMode:'contain'}}
                                 className='w-[330px] h-[200px] rounded-t-lg' 
                                 />
-                            <Text className='text-bold bg-emerald-200 p-1 px-3 text-[12px]'>{product.category}</Text>
+                            <Text className='text-bold bg-emerald-200 p-1 px-3 text-[12px]'>{product.name}</Text>
                             <View className='flex-row justify-between mt-3'>
                                 <View>
                                     <Text className='text-[14] font-semibold'>{product.price}</Text>
@@ -108,7 +110,7 @@ export const ProductDetail = ({navigation,route:{params:{id}}}:RootStackScreenPr
                         
                     </View>
                     <View className='mb-20'>
-                        <TouchableOpacity onPress={() => console.log('Pressed again')}>
+                        <TouchableOpacity onPress={addToCart}>
                       <Button className='mt-9 h-[50] items-center ml-2 mr-2 justify-center rounded-lg' icon="camera" mode="contained-tonal" textColor='#6495ed' >
                        Add TO Cart
                        </Button>  
