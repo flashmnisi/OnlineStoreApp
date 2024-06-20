@@ -9,6 +9,7 @@ import Profile from '../components/screens/Profile'
 import { CompositeScreenProps } from '@react-navigation/native'
 import { RootStackScreenProps } from './RootNavigator'
 import { Cart } from '../components/screens/Cart'
+import Login from '../components/screens/LoginDetails/Login'
 
 
 export type TabsStackParamList = {
@@ -67,7 +68,7 @@ const TabsNavigator = () => {
         />
         <TabsStack.Screen 
         name='Profile' 
-        component={Profile}
+        component={Login}
         options={{
             tabBarIcon: ({focused,color,size})=> {
                 return(

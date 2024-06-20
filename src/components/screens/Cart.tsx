@@ -2,13 +2,15 @@
 import React, {useState } from 'react'
 import { FlatList, Text, TouchableOpacity, View ,Image, ScrollView,SafeAreaView, Animated, useWindowDimensions} from 'react-native'
 import { Button} from 'react-native-paper'
-import Cartdata from '../data/Cartdata'
 import CartList from '../CartList'
 import { useSelector } from 'react-redux'
+import { selecteSubtotal, selectedDeliveryPrice, selectedTotal } from '../redux/store/cartSlice'
 
 export const Cart = () => {
     const cartItems = useSelector((state) => state.cart.items);
-    const [count, setCount] = useState(1)
+    const subtotal = useSelector(selecteSubtotal);
+    const deliveryFee = useSelector(selectedDeliveryPrice);
+    const total = useSelector(selectedTotal)
     const { width} = useWindowDimensions()
    
     return(
@@ -35,17 +37,25 @@ export const Cart = () => {
                     <View className='h-16'>
                       
                     </View>
-                    
-      
-                    <View className='mt-4 gap-3'>
+                     
+                         <View className='mt-4 gap-3'>
                         <View className=' bg-emerald-700 h-[40px] justify-center mb-4'>
                             <Text className='fond-bold text-[20px] pl-3 text-fuchsia-50'>Description</Text>
                         </View>
                         <View className='gap-1 bg-gray-500 h-[140px] justify-center'>
-                           <Text className=' text-blue-700 font-semibold'>MAKE : SAMSUNG</Text>
-                           <Text className=' text-red-700 font-semibold' >MODEL : 2024</Text>
-                           <Text className='text-red-700 font-semibold'>SIZE : LARGE</Text>
-                           <Text className=' font-sans font-bold fill-orange-950'>PRICE : R 4500 </Text>
+                            <View className='flex flex-row justify-between'>
+                                <Text className=' text-blue-700 font-semibold'>SUBTOTAL</Text>
+                                <Text className=' text-blue-700 font-semibold'>{subtotal}</Text>
+                            </View>
+                            <View className='flex flex-row justify-between'>
+                               <Text className=' text-red-700 font-semibold' >DELIVERY</Text>
+                               <Text className='text-red-700 font-semibold'>{deliveryFee}</Text> 
+                            </View>
+                           <View className='flex flex-row justify-between'>
+                             <Text className=' font-sans font-bold fill-orange-950'>TOTAL</Text>
+                             <Text className=' text-blue-700 font-semibold'>{total}</Text>
+                           </View>
+                          
   
                         </View>
                         

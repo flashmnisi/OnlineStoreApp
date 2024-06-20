@@ -115,7 +115,7 @@ export const datarecent = [
           require('../images/drill.webp'),
           require('../images/drill1.jpeg'),
           require('../images/drill2.jpeg'),
-
+           
           ],
         },
         {

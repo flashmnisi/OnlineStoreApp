@@ -8,6 +8,7 @@ import { SliderBox } from 'react-native-image-slider-box'
 import { TabsStackScreenProps } from '../../navigators/TabsNavigator'
 import { useDispatch, useSelector } from 'react-redux'
 import { productsSlice } from '../redux/store/productSlice'
+import { selectedNumberItem } from '../redux/store/cartSlice'
 
  const CATEGORIES = [
   'ALL ITEMS',
@@ -40,6 +41,7 @@ const Corousel = () => {
 export const HomeScreen = ({navigation}:TabsStackScreenProps<'Home'>) => {
 
   const dispatch = useDispatch();
+  const numberItem = useSelector(selectedNumberItem);
 
   const datarecent = useSelector(state => state.products.products);
   const [categoryIndex, setCategoryIndex] = useState(0)
@@ -55,7 +57,7 @@ export const HomeScreen = ({navigation}:TabsStackScreenProps<'Home'>) => {
 
               <TouchableOpacity onPress={()=> {navigation.navigate('Cart')}}>
                 <View className='bg-white h-4 w-4 justify-center items-center rounded-lg z-4'>
-                  <Text>8</Text>
+                  <Text>{numberItem}</Text>
                 </View>
                 <Icons name='cart-variant' size={25} color={"#6495ed"} />
               </TouchableOpacity>
