@@ -3,7 +3,7 @@ import { createSelector, createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
     items: [],
-    deliveryFee: 35,
+    deliveryFee: 350,
     freeDeliveryFrom: 6000,
 
 }

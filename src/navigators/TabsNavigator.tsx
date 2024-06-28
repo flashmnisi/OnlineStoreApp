@@ -56,7 +56,7 @@ const TabsNavigator = () => {
         />
         <TabsStack.Screen 
         name='Payment' 
-        component={ProductDetail} 
+        component={Cart} 
         options={{
             tabBarIcon: ({focused,color,size})=> {
                 return(

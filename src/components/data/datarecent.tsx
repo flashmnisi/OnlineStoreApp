@@ -4,6 +4,7 @@ export const datarecent = [
         {
           id: 1,
           name: 'stove',
+          make: 'DEFY',
           category: 'kitchen',
           price: 3500,
           image: require('../images/stove1.jpeg'),
@@ -18,6 +19,7 @@ export const datarecent = [
         {
           id: 2,
           name: 'microwave',
+          make: 'LG',
           model: 150,
           price: 999,
           image: require('../images/micro.jpeg'),
@@ -32,6 +34,7 @@ export const datarecent = [
         {
           id:3,
           name: 'fridge',
+          make: 'SAMSUNG',
           model: 250,
           rating: '4.2',
           price: 299,
@@ -46,6 +49,7 @@ export const datarecent = [
         {
           id:4,
           name: 'bed',
+          make: 'RESTONIC',
           model: 250,
           price: 14499,
           image: require('../images/bed2.jpeg'),
@@ -59,6 +63,7 @@ export const datarecent = [
         {
           id:5,
           name: 'blanket',
+          make: 'RESTONIC',
           weight: 300,
           rating: '4.5',
           price: 299,
@@ -74,6 +79,7 @@ export const datarecent = [
         {
           id:6,
           name: 'wardrobe',
+          make: 'BEDCITY',
           model: 350,
           rating: '4.2',
           price: 4993,
@@ -90,6 +96,7 @@ export const datarecent = [
         {
           id:7,
           name: 'grinder',
+          make: 'MAKITA',
           model: 200,
           price: 1299,
           image: require('../images/grind.jpeg'),
@@ -105,6 +112,7 @@ export const datarecent = [
         {
           id:8,
           name: 'drill',
+          make: 'MAKITA',
           weight: 500,
           rating: '4.5',
           price: 199,
@@ -121,6 +129,7 @@ export const datarecent = [
         {
           id:9,
           name: 'tv',
+          make: 'PAMASONIC',
           model: 150,
           price: 5499,
           image: require('../images/tv.jpeg'),

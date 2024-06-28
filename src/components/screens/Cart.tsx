@@ -1,7 +1,6 @@
 
-import React, {useState } from 'react'
-import { FlatList, Text, TouchableOpacity, View ,Image, ScrollView,SafeAreaView, Animated, useWindowDimensions} from 'react-native'
-import { Button} from 'react-native-paper'
+import React from 'react'
+import { FlatList, Text, TouchableOpacity, View, SafeAreaView, Image} from 'react-native'
 import CartList from '../CartList'
 import { useSelector } from 'react-redux'
 import { selecteSubtotal, selectedDeliveryPrice, selectedTotal } from '../redux/store/cartSlice'
@@ -11,63 +10,66 @@ export const Cart = () => {
     const subtotal = useSelector(selecteSubtotal);
     const deliveryFee = useSelector(selectedDeliveryPrice);
     const total = useSelector(selectedTotal)
-    const { width} = useWindowDimensions()
    
     return(
         
-      <><SafeAreaView className='bg-yellow-500 '>
+      <><SafeAreaView className='bg-yellow-500'>
 
             <View className='bg-yellow-500'>
                 <View className='p-5 justify-center items-center'>
-                    <Text className='font-bold text-4xl color-emerald-800'>FURITURE SHOP</Text>
+                    <Text className='font-bold text-4xl color-emerald-800'>FURNITURE SHOP</Text>
                     <Text className='font-bold text-3xl color-cyan-200'>PAYMENT</Text>
                 </View>
             </View>
         </SafeAreaView>
-        <ScrollView className='mt-4'>
+        <View className='mb-4 flex-[1]'>
 
                 <FlatList
                     data={cartItems}
                     pagingEnabled
+                    horizontal
                     snapToAlignment='center'
-                    showsHorizontalScrollIndicator={false}
                     renderItem={({ item}) => <CartList CartItem = {item} /> 
                        
                     } />
-                    <View className='h-16'>
+                    <View className='h-2'>
                       
                     </View>
                      
-                         <View className='mt-4 gap-3'>
-                        <View className=' bg-emerald-700 h-[40px] justify-center mb-4'>
-                            <Text className='fond-bold text-[20px] pl-3 text-fuchsia-50'>Description</Text>
-                        </View>
-                        <View className='gap-1 bg-gray-500 h-[140px] justify-center'>
-                            <View className='flex flex-row justify-between'>
-                                <Text className=' text-blue-700 font-semibold'>SUBTOTAL</Text>
-                                <Text className=' text-blue-700 font-semibold'>{subtotal}</Text>
+                     <View className='h-[240] rounded-xl bg-yellow-500 bottom-0 ml-2 mr-2 p-3'>
+       <Text className='font-bold text-xl text-red-600 mb-3'>Checkout Payments</Text>
+       <View className='gap-3'>
+        <View className='flex-row justify-between '>
+         <Text className=' text-blue-700 font-semibold'>SUBTOTAL</Text>
+         <Text className=' text-blue-700 font-semibold'>R {subtotal}</Text>
+        </View>
+        <View className='flex flex-row justify-between mb-8'>
+                               <Text className='font-semibold' >DELIVERY</Text>
+                               <Text className='font-semibold'>R {deliveryFee}</Text> 
                             </View>
-                            <View className='flex flex-row justify-between'>
-                               <Text className=' text-red-700 font-semibold' >DELIVERY</Text>
-                               <Text className='text-red-700 font-semibold'>{deliveryFee}</Text> 
-                            </View>
-                           <View className='flex flex-row justify-between'>
-                             <Text className=' font-sans font-bold fill-orange-950'>TOTAL</Text>
-                             <Text className=' text-blue-700 font-semibold'>{total}</Text>
-                           </View>
-                          
-  
-                        </View>
-                        
-                    </View>
-                    <View className='mb-20'>
-                        <TouchableOpacity onPress={() => console.warn('Pressed again')}>
-                      <Button className='mt-9 h-[50] items-center ml-2 mr-2 justify-center rounded-lg' icon="camera" mode="contained-tonal" textColor='#6495ed' >
-                       CHECKOUT
-                       </Button>  
-                    </TouchableOpacity> 
-                    </View>
-                    
+        <View className='flex-row items-center justify-between mt-5'>
+          <View className='flex-row justify-between gap-20'>
+            <View>
+                <Text className='opacity-70'>TOTAL PRICE</Text>
+            <Text className='font-semibold text-3xl'>R {(total).toLocaleString()}</Text>
+            </View>
+            </View>
+          <TouchableOpacity 
+          className='bg-white h-[60] w-44 items-center flex-row relative rounded-3xl justify-center ml-7'>
+            <Text className='font-semibold right-8'>
+            CHECKOUT
+            </Text>
+            <View className='w-[45] h-[45] right-5 rounded-3xl bg-yellow-500 items-center justify-center absolute'>
+            {/* <Text className=' text-white'>+</Text> */}
+            <Image source={require('../images/cart1.png')} style={{resizeMode:'contain',
+              height:25
+            }}/>
+            </View>
+          </TouchableOpacity>
+          
+        </View>
+       </View>
+    </View>
                      
-            </ScrollView></>
+            </View></>
     )}

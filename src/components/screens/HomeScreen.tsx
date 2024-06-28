@@ -4,7 +4,6 @@ import Entypo from 'react-native-vector-icons/Entypo'
 import Icons from 'react-native-vector-icons/MaterialCommunityIcons'
 import Icon from 'react-native-vector-icons/FontAwesome'
 import { SliderBox } from 'react-native-image-slider-box'
-//import { datarecent } from '../data/datarecent'
 import { TabsStackScreenProps } from '../../navigators/TabsNavigator'
 import { useDispatch, useSelector } from 'react-redux'
 import { productsSlice } from '../redux/store/productSlice'
@@ -24,7 +23,7 @@ const Corousel = () => {
         require('../images/electap.jpeg'),  
       ]
     return (
-      <View style={{ alignItems:'center',marginBottom:16 ,position:'absolute'}}>
+        <View style={{ alignItems:'center',marginBottom:16 ,position:'absolute'}}>
         <SliderBox images={slides} 
         onCurrentImagePressed={(index: any) => console.warn(`image ${index} pressed`)}
         dotColor="#6495ed"
@@ -47,9 +46,9 @@ export const HomeScreen = ({navigation}:TabsStackScreenProps<'Home'>) => {
   const [categoryIndex, setCategoryIndex] = useState(0)
     return (
     
-        <><SafeAreaView className='bg-pink-500'>
+        <><SafeAreaView className='bg-yellow-500'>
 
-        <View className='pl-5 pr-5 bg-blue-300'>
+        <View className='pl-5 pr-5'>
           <View className='flex-row justify-between items-center'>
             <Entypo name='location' size={25} color={"#6495ed"} />
             <Text className='color-gray-500 font-semibold text-lg'>lillydale trust</Text>
@@ -65,9 +64,17 @@ export const HomeScreen = ({navigation}:TabsStackScreenProps<'Home'>) => {
           </View>
         </View>
 
-        <View className='p-5'>
+        <View className='p-5 items-center'>
           <Text className='font-bold text-4xl color-emerald-800'>FURITURE SHOP</Text>
-          <Text className='font-bold text-3xl color-cyan-200'>the best in the world</Text>
+          <View className='flex-row gap-3'>
+            <Image source={require('../images/cart1.png')}
+           style={{
+            tintColor:'red'
+           }}
+           />
+          <Text className='font-bold text-3xl color-red-600'>Best Hardware</Text>
+          </View>
+          
         </View>
 
         <View className='flex flex-row p-4 justify-between'>
@@ -80,7 +87,8 @@ export const HomeScreen = ({navigation}:TabsStackScreenProps<'Home'>) => {
         </View>
       </SafeAreaView>
       <ScrollView>
-          <View style={{ flex: 1 }}>
+          <View className='flex-[1]'>
+
             <Corousel />
           </View>
           <View style={{ marginTop: 250 }}>
@@ -120,15 +128,15 @@ export const HomeScreen = ({navigation}:TabsStackScreenProps<'Home'>) => {
 
             <View className='mt-4'>
               <Text className='fond-bold text-[20px] pl-3'>
-                Latest On Market
+                List On Market
               </Text>
 
               <FlatList
                 data={datarecent}
                 numColumns={2}
-                renderItem={({ item, index }) => (
+                renderItem={({ item }) => (
 
-                <TouchableOpacity className='flex-1' 
+                <TouchableOpacity className='flex-1'  
                       onPress={()=> 
                     
                       {
@@ -136,25 +144,25 @@ export const HomeScreen = ({navigation}:TabsStackScreenProps<'Home'>) => {
                         navigation.navigate('Details', {id: item.id})}}>
                      <View className='m-2 p-2 border rounded-lg border-slate-300 bg-blue-50'>
                        <Image source={item.image} 
-                      style={{resizeMode:'contain'}}
+                      style={{resizeMode:'contain'}} 
                        className='w-full h-[130px]'
                        />
                   
-                       <Text className='text-bold bg-emerald-200 p-1 px-3 text-[12px]'>{item.category}</Text>
+                       <Text className='text-bold bg-emerald-200 p-1 px-3 text-[12px]'>{item.make}</Text>
                        <View className='flex-row justify-between mt-3'>
                          <View>
                            <Text className='text-[14] font-semibold'>{item.name}</Text>
                          <Text className='text-[20] font-bold color-cyan-700'>R {item.price}</Text>
                          </View>
-                         <TouchableOpacity>
-                           <Icons name='cards-heart-outline' size={25} color={"#6495ed"} />
-                        </TouchableOpacity>
-                       </View>
-                       </View>
-                </TouchableOpacity>
+                                <TouchableOpacity>
+                                 <Icons name='cards-heart-outline' size={25} color={"#6495ed"} />
+                                </TouchableOpacity>
+                            </View>
+                           </View>
+                           </TouchableOpacity>
                     ) }/>
-               </View>
-           </ScrollView></>
+                 </View>
+               </ScrollView></>
       
         
     )
